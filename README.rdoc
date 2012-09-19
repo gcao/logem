@@ -1,6 +1,15 @@
 = logem
 
-Description goes here.
+A simple logger for ruby
+
+== Usage
+
+<pre>
+require 'logem'
+
+logger = Logem::Logger.new klass
+logger.trace 'method_name', 'args', 'etc'
+</pre>
 
 == Contributing to logem
  
