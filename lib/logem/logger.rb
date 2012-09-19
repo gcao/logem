@@ -8,13 +8,14 @@ module Logem
     TRACE = 10
 
     DEFAULT_VISIBLE_LEVEL = INFO
+    DEFAULT_LOG_LEVEL_ENV = "LOGEM_LOG_LEVEL"
 
     attr :log_level_env
     attr_accessor :visible_level
 
     def initialize context, options = {}
       @context        = context
-      @log_level_env  = options[:log_level_env ] || "LOGEM_LOG_LEVEL"
+      @log_level_env  = options[:log_level_env ] || DEFAULT_LOG_LEVEL_ENV
       @visible_level  = options[:visible_level ] || self.class.string_to_level(ENV[@log_level_env]) || DEFAULT_VISIBLE_LEVEL
       @output         = options[:output        ] || $stdout
       @time_formatter = options[:time_formatter]

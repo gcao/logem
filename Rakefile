@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "logem"
   gem.homepage = "http://github.com/gcao/logem"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A simple logger for Ruby}
+  gem.description = %Q{A simple logger for Ruby}
   gem.email = "gcao99@gmail.com"
   gem.authors = ["Guoliang Cao"]
   # dependencies defined in Gemfile
