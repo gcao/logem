@@ -7,30 +7,30 @@ module Logem
     DEBUG = 20
     TRACE = 10
 
-    DEFAULT_VISIBLE_LEVEL = INFO
+    DEFAULT_LEVEL = INFO
     DEFAULT_LOG_LEVEL_ENV = "LOGEM_LOG_LEVEL"
 
     attr :log_level_env
     attr :context
-    attr_accessor :visible_level
+    attr_accessor :level
 
     def initialize context, options = {}
       @context        = context
       @log_level_env  = options[:log_level_env ] || DEFAULT_LOG_LEVEL_ENV
-      @visible_level  = options[:visible_level ] || self.class.string_to_level(ENV[@log_level_env]) || DEFAULT_VISIBLE_LEVEL
+      @level          = options[:level         ] || self.class.string_to_level(ENV[@log_level_env]) || DEFAULT_LEVEL
       @output         = options[:output        ] || $stdout
       @time_formatter = options[:time_formatter]
       @output_supports_logem = @output.respond_to? :logem
     end
 
     def log level, *args
-      return if @visible_level > level
+      return if @level > level
 
       _log_ level, *args
     end
 
     def visible? level
-      @visible_level <= level
+      @level <= level
     end
 
     def self.level_to_string level
@@ -45,7 +45,7 @@ module Logem
     end
 
     def self.string_to_level level_string
-      return DEFAULT_VISIBLE_LEVEL if level_string.nil? or level_string.strip == ''
+      return DEFAULT_LEVEL if level_string.nil? or level_string.strip == ''
 
       case level_string.strip.downcase
       when 'error' then ERROR
@@ -55,8 +55,8 @@ module Logem
       when 'trace' then TRACE
       else
         $stdout.puts "Logem warning: #{level_string} is not a valid log level, " +
-                     "default to #{level_to_string(DEFAULT_VISIBLE_LEVEL).strip}"
-        DEFAULT_VISIBLE_LEVEL
+                     "default to #{level_to_string(DEFAULT_LEVEL).strip}"
+        DEFAULT_LEVEL
       end
     end
 
@@ -64,7 +64,7 @@ module Logem
       level = string_to_level(level_str)
       
       define_method level_str do |*args|
-        return if @visible_level > level
+        return if @level > level
 
         _log_ level, *args
       end
