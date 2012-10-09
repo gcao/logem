@@ -11,6 +11,7 @@ module Logem
     DEFAULT_LOG_LEVEL_ENV = "LOGEM_LOG_LEVEL"
 
     attr :log_level_env
+    attr :context
     attr_accessor :visible_level
 
     def initialize context, options = {}
@@ -75,7 +76,7 @@ module Logem
       time = Time.now
 
       if @output_supports_logem
-        @output.logem time, self.class.level_to_string(level), @context, *args
+        @output.logem time, level, @context, *args
       else
         time_str = @time_formatter ? @time_formatter.call(time) : time.to_s
 
