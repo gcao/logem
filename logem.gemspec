@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{logem}
+  s.name = "logem"
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Guoliang Cao"]
-  s.date = %q{2012-09-19}
-  s.description = %q{A simple logger for Ruby}
-  s.email = %q{gcao99@gmail.com}
+  s.date = "2012-10-09"
+  s.description = "A simple logger for Ruby"
+  s.email = "gcao99@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -20,22 +20,26 @@ Gem::Specification.new do |s|
     ".document",
     ".irbrc",
     ".rspec",
+    ".rvmrc",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "examples/complete.rb",
+    "examples/simple.rb",
     "lib/logem.rb",
     "lib/logem/logger.rb",
-    "spec/logem_spec.rb",
+    "logem.gemspec",
+    "spec/logem/logger_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/gcao/logem}
+  s.homepage = "http://github.com/gcao/logem"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{A simple logger for Ruby}
+  s.rubygems_version = "1.8.18"
+  s.summary = "A simple logger for Ruby"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
