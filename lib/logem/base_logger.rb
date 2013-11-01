@@ -76,11 +76,20 @@ module Logem
       time = Time.now
 
       if @output_supports_logem
-        @output.logem time, level, @context, *args
+        if @context
+          @output.logem time, level, @context, *args
+        else
+          @output.logem time, level, *args
+        end
       else
         time_str = @time_formatter ? @time_formatter.call(time) : time.to_s
 
-        parts = [time_str, self.class.level_to_string(level), @context.to_s]
+        if @context
+          parts = [time_str, self.class.level_to_string(level), @context.to_s]
+        else
+          parts = [time_str, self.class.level_to_string(level)]
+        end
+
         args.each {|arg| parts << (arg.nil? ? 'nil' : arg.to_s) }
 
         @output.puts parts.join(' | ')
